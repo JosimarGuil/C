@@ -1,0 +1,30 @@
+
+INSTRUÇÕES
+
+  1- Variáveis globais são proibidas.
+  
+  2- Você deve escrever um programa chamado push_swap que aceita como argumento a pilha a 
+  formatada como uma lista de inteiros. 
+  O primeiro argumento deve estar no topo da pilha (tenha cuidado com a ordem).
+  
+  3- O programa deve exibir a sequência mais curta de instruções necessárias
+  para ordenar a pilha a com o menor número no topo.
+  
+  4- O programa deve exibir a sequência mais curta de instruções necessárias 
+  para ordenar a pilha a com o menor número no topo.
+  
+  5- Instruções devem ser separadas por um '' e nada mais.
+  
+  6- O objetivo é ordenar a pilha com o menor número possível de operações. Durante o processo
+  de avaliação, o número de instruções encontradas pelo seu programa será comparado
+  a um limite: o número máximo de operações toleradas. Se o seu programa
+  exibir uma lista mais longa ou se os números não estiverem ordenados corretamente,
+  sua nota será 0.
+  
+  7- Em caso de erro, deve exibir "Erro" seguido de um '' no erro padrão. Os erros incluem,
+  por exemplo: alguns argumentos não sendo inteiros, alguns argumentos ultrapassando 
+  os limites dos inteiros e/ou a presença de duplicatas.
+  
+  8- Em caso de erro, deve exibir "Erro" seguido de um '' no erro padrão. Os erros incluem, 
+  por exemplo: alguns argumentos não sendo inteiros,
+  alguns argumentos ultrapassando os limites dos inteiros e/ou a presença de duplicatas.
