@@ -44,8 +44,6 @@ int ft_atoi(const char *str, int *error)
     return (s * result);
 }
 
-#include <stddef.h>
-
 size_t	ft_strlen(const char *str)
 {
 	size_t	i;
@@ -158,3 +156,4 @@ int ft_stsr_equal(const char *s, const char *d)
     }
     return (*s == '\0' && *d == '\0');
 }
+

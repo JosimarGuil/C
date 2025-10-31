@@ -2,7 +2,7 @@
 
 static int is_valid(char **str, int nargs);
 static void free_split(char **words);
-static void fill_stack(t_stack *stack, char **args, int nargs);
+static void fill_stack(t_stack *stack, char **argv, int argc);
 int count_numbers(int argc, char **argv);
 static int is_sorted(t_stack *list);
 
@@ -155,20 +155,12 @@ static void free_split(char **words)
 
 static void fill_stack(t_stack *stack, char **argv, int argc)
 {
-    int     i, j;
-    char    **words;
-    int     value;
-    int     error;
-    int     *temp_values;
-    int     count = 0;
-    int     total_values = 1000; // Ajuste conforme necessário
-
-    temp_values = malloc(total_values * sizeof(int));
-    if (!temp_values)
-        exit(1);
-
-    // Primeiro coleta todos os valores
-    i = 1;
+    int i = 1;
+    char **words;
+    int j;
+    int value;
+    int error;
+    /* we'll push bottoms in order so argv[1] becomes top */
     while (i < argc)
     {
         words = ft_split(argv[i], ' ');
@@ -177,7 +169,6 @@ static void fill_stack(t_stack *stack, char **argv, int argc)
             i++;
             continue;
         }
-        
         j = 0;
         while (words[j])
         {
@@ -185,39 +176,32 @@ static void fill_stack(t_stack *stack, char **argv, int argc)
             value = ft_atoi(words[j], &error);
             if (error)
             {
-                free(temp_values);
                 free_split(words);
                 write(2, "Error\n", 6);
                 exit(1);
             }
-            temp_values[count++] = value;
+            /* push to bottom keeps first argument as top when all inserted */
+            push_bottom(stack, value);
             j++;
         }
         free_split(words);
         i++;
     }
-
-    // Agora empurra na ordem inversa para corrigir a orientação LIFO
-    i = count - 1;
-    while (i >= 0)
-    {
-        push(stack, temp_values[i]);
-        i--;
-    }
-    
-    free(temp_values);
 }
 
 static int is_sorted(t_stack *list)
 {
-    if (list->size <= 1)
-        return (1);
-    int i = list->size - 1;
-    while (i >= 0)
+    t_node *cur;
+
+    if (!list || list->size <= 1)
+        return 1;
+
+    cur = list->top;
+    while (cur && cur->next)
     {
-        if (list->numbers[i] > list->numbers[i - 1]) 
-            return (-1);
-        i--;
+        if (cur->value > cur->next->value)
+            return -1;
+        cur = cur->next;
     }
-    return (1);
+    return 1;
 }
